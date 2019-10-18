@@ -1,6 +1,9 @@
 package com.testspringboot.demo.User.Entity;
 
+import io.swagger.annotations.ApiOperation;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
@@ -8,12 +11,23 @@ import java.util.Set;
  * 用户类
  */
 
-
 public class User {
+    @Id
     private int id;
+    @NotNull(message = "用户名不能为空")
     private String userName;
+    @NotNull(message = "密码不能为空")
     private String password;
     private List<Role> roleList;
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public List<Role> getRoleList() {
         return roleList;

@@ -1,16 +1,19 @@
 package com.testspringboot.demo.User.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
 @RequestMapping("redis")
 public class RedisTestController {
-    @Autowired
-    private StringRedisTemplate redisTemplate;
+    @Resource
+    private RedisTemplate redisTemplate;
 
     @GetMapping("add")
     public Object add() {
@@ -20,7 +23,7 @@ public class RedisTestController {
 
     @GetMapping("get")
     public Object get() {
-        String s = redisTemplate.opsForValue().get("name");
+        String s = (String) redisTemplate.opsForValue().get("name");
         return s;
     }
 

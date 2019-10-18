@@ -42,5 +42,9 @@ public interface UserDao {
                     many = @Many(select = "com.testspringboot.demo.User.Mapper.UserDao.findRoleListUserById", fetchType = FetchType.DEFAULT)
             ),
     })
-    User findAllUserInfoByUserName(@Param("userName")String userName);
+    User findAllUserInfoByUserName(@Param("userName") String userName);
+
+    @Options(useGeneratedKeys = true, keyProperty = "user.id", keyColumn = "id")
+    @Insert("insert into sys_user (user_name,pass_word) values (#{user.userName},#{user.password})")
+    int insertUser(@Param("user") User user);
 }
