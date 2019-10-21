@@ -47,4 +47,7 @@ public interface UserDao {
     @Options(useGeneratedKeys = true, keyProperty = "user.id", keyColumn = "id")
     @Insert("insert into sys_user (user_name,pass_word) values (#{user.userName},#{user.password})")
     int insertUser(@Param("user") User user);
+
+    @Select("select su.id as id,su.user_name as userName,ui.user_id_card as 'userInfo.userIdCard',ui.email as 'userInfo.email',ui.tel as 'userInfo.tel',ui.real_name as 'userInfo.realName',ui.create_date as 'userInfo.createDate' from sys_user su left join user_info ui on su.id = ui.user_id where su.id = #{id}")
+    User getUserById(@Param("id") int id);
 }

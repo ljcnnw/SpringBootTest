@@ -18,7 +18,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @ApiOperation(value = "查询权限", notes = "查询权限接口")
     @GetMapping("findRoleListByUserName")
@@ -38,6 +38,21 @@ public class UserController {
         }
 
 
+    }
+
+    @ApiOperation(value = "获取用户信息", notes = "获取用户信息接口")
+    @GetMapping("getUserById")
+    public ResultData getUserById(@RequestParam int id){
+        try {
+            User user = userService.getUserById(id);
+            if(user != null){
+                return new ResultData(200,user);
+            }else {
+                return new ResultData(500,"用户不存在");
+            }
+        }catch (Exception e){
+            return new ResultData(500,"获取用户信息失败");
+        }
     }
 
 

@@ -35,7 +35,12 @@ public class UserServiceImpl implements UserService {
         sqlSession.getMapper(UserDao.class).insertUser(user);
         user.getUserInfo().setUserId(user.getId());
         userInfoDao.insertUserInfo(user.getUserInfo());
-        userRoleDao.insertUserRole(user.getId(),3);
+        userRoleDao.insertUserRole(user.getId(), 3);
         return user.getId();
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userDao.getUserById(id);
     }
 }

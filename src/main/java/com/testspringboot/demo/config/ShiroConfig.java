@@ -101,7 +101,7 @@ public class ShiroConfig {
     public SessionManager sessionManager() {
         CustomSessionManager customSessionManager = new CustomSessionManager();
         //会话超时时间，默认30分钟，单位是毫秒
-        customSessionManager.setGlobalSessionTimeout(20000);
+        //customSessionManager.setGlobalSessionTimeout(20000);
         return customSessionManager;
     }
 }

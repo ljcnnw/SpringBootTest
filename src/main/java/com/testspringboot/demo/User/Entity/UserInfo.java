@@ -1,5 +1,7 @@
 package com.testspringboot.demo.User.Entity;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 /**
@@ -10,6 +12,8 @@ public class UserInfo {
     private int userId;
     private String realName;
     private String tel;
+    @Email(message = "邮箱格式不正确")
+    @NotEmpty(message = "邮箱不能为空")
     private String email;
     private String userIdCard;
     private Date createDate;

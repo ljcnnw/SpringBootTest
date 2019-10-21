@@ -8,5 +8,8 @@ import java.util.List;
 
 public interface UserService {
     List<Role> findRoleListByUserId(int userId);
+
     int insertUser(User user);
+
+    User getUserById(int id);
 }
