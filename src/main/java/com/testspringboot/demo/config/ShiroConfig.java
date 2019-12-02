@@ -38,6 +38,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/pub/**", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
+        filterChainDefinitionMap.put("/api/**", "anon");
         filterChainDefinitionMap.put("/swagger-resources/**", "anon");
         filterChainDefinitionMap.put("/v2/**", "anon");
         //登录访问

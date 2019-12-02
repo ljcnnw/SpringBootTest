@@ -37,6 +37,8 @@ public class CustomRealm extends AuthorizingRealm {
         List<String> roleList = new ArrayList<>();
         List<String> permissionList = new ArrayList<>();
 
+        
+
         List<Role> roles = user.getRoleList();
         for (Role r : roles) {
             roleList.add(r.getRoleCode());

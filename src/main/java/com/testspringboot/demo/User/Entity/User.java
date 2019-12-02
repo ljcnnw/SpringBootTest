@@ -24,6 +24,17 @@ public class User {
     @Valid
     private UserInfo userInfo;
 
+    private String emailCheckNum;//邮箱验证码
+
+
+    public String getEmailCheckNum() {
+        return emailCheckNum;
+    }
+
+    public void setEmailCheckNum(String emailCheckNum) {
+        this.emailCheckNum = emailCheckNum;
+    }
+
     public UserInfo getUserInfo() {
         return userInfo;
     }
