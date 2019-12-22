@@ -41,6 +41,11 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/api/**", "anon");
         filterChainDefinitionMap.put("/swagger-resources/**", "anon");
         filterChainDefinitionMap.put("/v2/**", "anon");
+        filterChainDefinitionMap.put("/v1/**", "anon");
+        filterChainDefinitionMap.put("/endpoint-websocket/**", "anon");
+        filterChainDefinitionMap.put("/topic/**", "anon");
+        filterChainDefinitionMap.put("/chat/**", "anon");
+        filterChainDefinitionMap.put("/app/**", "anon");
         //登录访问
         filterChainDefinitionMap.put("/authc/**", "authc");
         filterChainDefinitionMap.put("/user/**", "authc");
