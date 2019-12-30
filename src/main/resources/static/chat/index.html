@@ -24,14 +24,25 @@
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/vendors/material-floating-button/dist/mfb.min.js"></script>
     <script src="dist/js/main.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 
     <script type="application/javascript">
         jQuery(document).ready(
             function () {
                 var token = sessionStorage.getItem("token");
-                window.console.log(token);
-                window.console.log(sessionStorage.getItem("userName"));
-                window.console.log(sessionStorage.getItem("user"));
+                var socket = new SockJS('/endpoint-websocket'); //连接上端点(基站)
+                stompClient = Stomp.over(socket);			//用stom进行包装，规范协议
+                stompClient.connect({}, function (frame) {
+                    console.log('Connected: ' + frame);
+                    stompClient.subscribe('/topic/game_chat', function (result) {
+                        console.info(result);
+                    });
+                });
+                
+                $("#sendMsgBtn").click(function () {
+                    console.log("11111");
+                })
             }
         )
     </script>
@@ -759,7 +770,7 @@
                                         </div>
 
                                         <div class="composer__right">
-                                            <div class="composer__right--send">
+                                            <div class="composer__right--send" id="sendMsgBtn">
                                                 <i class="mdi mdi-send"></i>
                                             </div>
                                             <div class="composer__right--microphone">

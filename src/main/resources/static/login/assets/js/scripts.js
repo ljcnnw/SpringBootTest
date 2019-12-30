@@ -41,7 +41,7 @@ jQuery(document).ready(function() {
 					document.cookie = result.sessionId;
 					sessionStorage.setItem("token",result.sessionId);
 					sessionStorage.setItem("userName",$("#formUsername").val());
-					window.console.log(result.user);
+					//window.console.log(result.user);
 					sessionStorage.setItem("user",JSON.stringify(result.user));
 					window.location.href = "/chat/index.html";
 				}else {
