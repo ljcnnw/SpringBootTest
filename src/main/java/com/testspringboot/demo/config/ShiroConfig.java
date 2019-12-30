@@ -45,6 +45,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/endpoint-websocket/**", "anon");
         filterChainDefinitionMap.put("/topic/**", "anon");
         filterChainDefinitionMap.put("/chat/**", "anon");
+        filterChainDefinitionMap.put("/login/**", "anon");
+
         filterChainDefinitionMap.put("/app/**", "anon");
         //登录访问
         filterChainDefinitionMap.put("/authc/**", "authc");

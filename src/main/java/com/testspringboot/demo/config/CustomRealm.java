@@ -73,6 +73,6 @@ public class CustomRealm extends AuthorizingRealm {
 
         String pwd = user.getPassword();
 
-        return new SimpleAuthenticationInfo(username, user.getPassword(), this.getClass().getName());
+        return new SimpleAuthenticationInfo(user, user.getPassword(), this.getClass().getName());
     }
 }
