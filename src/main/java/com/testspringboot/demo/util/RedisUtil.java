@@ -18,6 +18,7 @@ public class RedisUtil {
 
     //Redis key前缀
     public static String CheckMail = "CHECK_MAIL:";//邮箱认证
+    public static String FriendsList = "FRIENDS_LIST:";//用户好友
 
     private static RedisUtil redisUtil;
 

@@ -1,13 +1,11 @@
 package com.testspringboot.demo.User.Entity;
 
-import io.swagger.annotations.ApiOperation;
+import com.testspringboot.demo.friends.entity.UserFriend;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 用户类
@@ -23,6 +21,8 @@ public class User {
     private List<Role> roleList;
     @Valid
     private UserInfo userInfo;
+
+    private List<UserFriend> userFriendList;
 
     private String emailCheckNum;//邮箱验证码
 
@@ -73,6 +73,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<UserFriend> getUserFriendList() {
+        return userFriendList;
+    }
+
+    public void setUserFriendList(List<UserFriend> userFriendList) {
+        this.userFriendList = userFriendList;
     }
 
     @Override
