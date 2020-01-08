@@ -31,17 +31,21 @@
         jQuery(document).ready(
             function () {
                 var token = sessionStorage.getItem("token");
+                var user = sessionStorage.getItem("user");
+                var user2 = JSON.parse(user);
+                console.info(user);
+                console.info(user2);
                 var socket = new SockJS('/endpoint-websocket'); //连接上端点(基站)
                 stompClient = Stomp.over(socket);			//用stom进行包装，规范协议
                 stompClient.connect({}, function (frame) {
                     console.log('Connected: ' + frame);
-                    stompClient.subscribe('/topic/game_chat', function (result) {
-                        console.info(result);
+                    stompClient.subscribe('/chat/single/'+user2.id, function (result) {
+                        console.info(JSON.parse(result.body));
                     });
                 });
                 
                 $("#sendMsgBtn").click(function () {
-                    console.log("11111");
+                    stompClient.send("/app/singleChat/private", {}, JSON.stringify({'content': $("#context").val(), 'out':user2.id, 'in':user2.id}));
                 })
             }
         )
@@ -732,7 +736,15 @@
                                                     <div class="message__options"><i class=" mdi mdi-dots-horizontal" ></i></div>
                                                 </li>
                                                 <li class="message sent">
-                                                    <div class="message__text">hello, are you there ?   
+                                                <div class="message__text">hello, are you there ?
+                                                    <div class="metadata">
+                                                        <span class="time">07:15 AM</span>
+                                                    </div>
+                                                </div>
+                                                <div class="message__options"><i class=" mdi mdi-dots-horizontal" ></i></div>
+                                            </li>
+                                                <li class="message sent">
+                                                    <div class="message__text">hello, are you there2 ?
                                                         <div class="metadata">
                                                             <span class="time">07:15 AM</span>
                                                         </div>
@@ -756,7 +768,7 @@
                                         </div>
 
                                         <div class="composer__middle">
-                                            <textarea class="form-control" rows="1" placeholder="Type a message..."></textarea>
+                                            <textarea class="form-control" rows="1" placeholder="Type a message..." id="context"></textarea>
                                     
                                             <div class="composer__middle--microphone">
                                                 <i class="mdi mdi-microphone"></i>
