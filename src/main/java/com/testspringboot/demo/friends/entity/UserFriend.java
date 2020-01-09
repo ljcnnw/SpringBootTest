@@ -1,9 +1,11 @@
 package com.testspringboot.demo.friends.entity;
 
+import java.io.Serializable;
+
 /**
  * 好友
  */
-public class UserFriend {
+public class UserFriend implements Serializable {
     private int id;
     private String userName;
 
