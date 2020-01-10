@@ -27,7 +27,6 @@ jQuery(document).ready(function() {
     	
     });
 	$('#loginBtn').click(function () {
-
 		$.ajax({
 			url: "/pub/login",
 			contentType: "application/json;charset=utf-8",
@@ -52,3 +51,7 @@ jQuery(document).ready(function() {
 	});
     
 });
+
+function getFriendsList() {
+	
+}

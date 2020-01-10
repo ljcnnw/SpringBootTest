@@ -32,7 +32,7 @@ public class UserFriendController {
     @PostMapping("getFriendsList")
     public ResultData getFriendsList(@Param("userId") int userId) {
         try {
-            Set<UserFriend> userFriends = userFriendService.getFriendsList(userId);
+            Set<Object> userFriends = userFriendService.getFriendsList(userId);
             return new ResultData(200, userFriends);
         } catch (Exception e) {
             e.printStackTrace();

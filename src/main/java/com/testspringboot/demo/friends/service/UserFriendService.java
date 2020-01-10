@@ -15,7 +15,6 @@ import java.util.Set;
 @Service
 public class UserFriendService {
 
-
     /**
      * 添加好友
      *
@@ -24,15 +23,15 @@ public class UserFriendService {
     public void addFriend(int userId, int friendId) {
         UserFriend userFriend = new UserFriend(friendId, "jjjj");
         byte[] uf = SerializeUtil.serizlize(userFriend);
-        RedisUtil.getInstance().sSet(RedisUtil.FriendsList + userId, uf);
+        RedisUtil.getInstance().sSet(RedisUtil.FriendsList + userId, userFriend);
     }
 
-    public Set<UserFriend> getFriendsList(int userId) {
-        Set<Object> userList = RedisUtil.getInstance().sGet(RedisUtil.FriendsList + userId);
-        Set<UserFriend> userFriends = new HashSet<>();
-        for (Object o : userList) {
-            userFriends.add((UserFriend)SerializeUtil.deserialize(o.toString().getBytes()));
-        }
-        return userFriends;
+    public Set<Object> getFriendsList(int userId) {
+//        byte[] ul = RedisUtil.getInstance().sGetForByte(RedisUtil.FriendsList + userId);
+        System.out.println(RedisUtil.FriendsList + userId);
+        Set<Object> userFriends2 = RedisUtil.getInstance().sGet(RedisUtil.FriendsList + userId);
+        //Set<Object> userList = RedisUtil.getInstance().sGet(RedisUtil.FriendsList + userId);
+  //      Set<UserFriend> userFriends = (Set<UserFriend>) SerializeUtil.deserialize(ul);
+        return userFriends2;
     }
 }

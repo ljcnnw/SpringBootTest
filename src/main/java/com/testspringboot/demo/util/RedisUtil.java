@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisUtil {
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
     //Redis key前缀
     public static String CheckMail = "CHECK_MAIL:";//邮箱认证
@@ -333,7 +333,17 @@ public class RedisUtil {
      */
     public Set<Object> sGet(String key) {
         try {
+           // redisTemplate.getStringSerializer().serialize(key);
             return redisTemplate.opsForSet().members(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public byte[] sGetForByte(String key) {
+        try {
+            return redisTemplate.getStringSerializer().serialize(key);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -6,8 +6,14 @@ import java.io.Serializable;
  * 好友
  */
 public class UserFriend implements Serializable {
+
+
+    private static final long serialVersionUID = -3518721793618003167L;
     private int id;
     private String userName;
+
+    public UserFriend() {
+    }
 
     public UserFriend(int id, String userName) {
         this.id = id;
