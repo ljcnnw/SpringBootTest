@@ -6,6 +6,7 @@ import com.testspringboot.demo.friends.service.UserFriendService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,7 @@ public class UserFriendController {
             return new ResultData(500, "添加失败");
         }
     }
-    @PostMapping("getFriendsList")
+    @GetMapping("getFriendsList")
     public ResultData getFriendsList(@Param("userId") int userId) {
         try {
             Set<Object> userFriends = userFriendService.getFriendsList(userId);
