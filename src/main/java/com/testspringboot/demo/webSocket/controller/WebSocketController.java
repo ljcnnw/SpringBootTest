@@ -20,9 +20,9 @@ public class WebSocketController {
         return new OutMessage(inMessage.getContent());
     }
 
-    @MessageMapping("/singleChat/private")
-    private void singleChatForPrivate(InMessage inMessage){
-        webSocketService.sendPrivateMessage(inMessage);
-    }
+//    @MessageMapping("/singleChat/private")
+//    private void singleChatForPrivate(InMessage inMessage){
+//        webSocketService.sendPrivateMessage(inMessage);
+//    }
 
 }

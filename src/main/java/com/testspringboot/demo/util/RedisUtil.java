@@ -14,11 +14,12 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisUtil {
     @Autowired
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     //Redis key前缀
     public static String CheckMail = "CHECK_MAIL:";//邮箱认证
     public static String FriendsList = "FRIENDS_LIST:";//用户好友
+    public static String PRIVATE_CHAT_RECORDING = "PRIVATE_CHAT_RECORDING:";//私人聊天记录
 
     private static RedisUtil redisUtil;
 
@@ -333,7 +334,7 @@ public class RedisUtil {
      */
     public Set<Object> sGet(String key) {
         try {
-           // redisTemplate.getStringSerializer().serialize(key);
+            // redisTemplate.getStringSerializer().serialize(key);
             return redisTemplate.opsForSet().members(key);
         } catch (Exception e) {
             e.printStackTrace();

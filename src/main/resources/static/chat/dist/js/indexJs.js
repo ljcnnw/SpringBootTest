@@ -10,6 +10,7 @@ jQuery(document).ready(
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/chat/single/' + user2.id, function (result) {
+                //console.info(JSON.parse(result));
                 console.info(JSON.parse(result.body));
             });
         });
@@ -20,8 +21,8 @@ jQuery(document).ready(
                 {},
                 JSON.stringify({
                     'content': $("#context").val(),
-                    'out': user2.id,
-                    'in': user2.id
+                    'receiveUserId': 2,
+                    'sendUserId': user2.id
                 }));
         })
     }
@@ -30,6 +31,9 @@ jQuery(document).ready(
 //初始化好友列表
 function resetFriendsList() {
     var friendsList = JSON.parse(sessionStorage.getItem("friendsList"));
+    if(friendsList == null){
+        return;
+    }
     var str = '';
     friendsList.forEach(function (val, index) {
         console.info(val);
