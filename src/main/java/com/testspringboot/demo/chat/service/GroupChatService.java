@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 群聊
+ * @author ljc
+ */
 @Service
 public class GroupChatService {
     @Autowired
@@ -33,5 +37,9 @@ public class GroupChatService {
         GroupChat groupChat = groupChatDao.getGroupChatById(id);
         groupChat.setGroupChatUserIdList((ArrayList<Integer>)SerializeUtil.deserialize(groupChat.getGroupChatUserIdListForByte()));
         return groupChat;
+    }
+
+    public int joinGroupChat(GroupChat groupChat,int userId){
+        return 0;
     }
 }

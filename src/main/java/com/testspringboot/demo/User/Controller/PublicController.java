@@ -23,7 +23,7 @@ import java.security.Security;
 import java.util.HashMap;
 import java.util.Map;
 
-@Api(description = "公用接口")
+@Api(tags = "公用接口")
 @RestController
 @RequestMapping("pub")
 @CrossOrigin
@@ -43,8 +43,6 @@ public class PublicController {
             UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUserName(), user.getPassword());
             subject.login(usernamePasswordToken);
             System.out.println(subject.getPrincipal());
-//            User user1 = (User) SecurityUtils.getSubject().getPrincipal();
-  //          System.out.println(user1);
             info.put("msg", "success");
             info.put("sessionId", subject.getSession().getId());
             info.put("user",subject.getPrincipal());
