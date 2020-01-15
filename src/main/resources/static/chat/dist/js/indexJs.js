@@ -12,6 +12,7 @@ jQuery(document).ready(
             stompClient.subscribe('/chat/single/' + user2.id, function (result) {
                 //console.info(JSON.parse(result));
                 console.info(JSON.parse(result.body));
+                saveRecordingMsg(result);
             });
         });
 
@@ -26,7 +27,23 @@ jQuery(document).ready(
                 }));
         })
     }
-)
+);
+//保存接受到的消息
+function saveRecordingMsg(message) {
+   $.ajax({
+       url:"/chat/saveChatRecording",
+       type:"POST",
+       contentType: "application/json;charset=utf-8",
+       data:message,
+       success:function (result) {
+            if(result.code == 200){
+                console.log("success");
+            }else {
+                console.log("fail");
+            }
+       }
+   })
+}
 
 //初始化好友列表
 function resetFriendsList() {
