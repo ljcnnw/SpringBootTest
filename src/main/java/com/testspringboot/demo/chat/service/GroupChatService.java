@@ -3,6 +3,7 @@ package com.testspringboot.demo.chat.service;
 import com.testspringboot.demo.User.Mapper.UserDao;
 import com.testspringboot.demo.chat.entiy.GroupChat;
 import com.testspringboot.demo.chat.Mapper.GroupChatDao;
+import com.testspringboot.demo.chat.entiy.GroupChatUser;
 import com.testspringboot.demo.util.SerializeUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +34,15 @@ public class GroupChatService {
         return groupChat;
     }
 
+
+
     public GroupChat getGroupChatById(int id){
         GroupChat groupChat = groupChatDao.getGroupChatById(id);
         groupChat.setGroupChatUserIdList((ArrayList<Integer>)SerializeUtil.deserialize(groupChat.getGroupChatUserIdListForByte()));
         return groupChat;
     }
 
-    public int joinGroupChat(GroupChat groupChat,int userId){
-        return 0;
+    public void joinGroupChat(GroupChatUser groupChatUser){
+        groupChatDao.joinGrouChat(groupChatUser);
     }
 }

@@ -1,6 +1,7 @@
 package com.testspringboot.demo.chat.controller;
 
 import com.testspringboot.demo.chat.entiy.GroupChat;
+import com.testspringboot.demo.chat.entiy.GroupChatUser;
 import com.testspringboot.demo.chat.service.GroupChatService;
 import com.testspringboot.demo.config.ResultData;
 import org.apache.ibatis.annotations.Param;
@@ -47,6 +48,17 @@ public class GroupChatController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultData(500, "查询群聊信息失败");
+        }
+    }
+
+    @PostMapping("joinGroupChat")
+    public ResultData joinGroupChat(@RequestBody GroupChatUser groupChatUser) {
+        try {
+            groupChatService.joinGroupChat(groupChatUser);
+            return new ResultData(200,"加入成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResultData(500,"加入失败");
         }
     }
 }

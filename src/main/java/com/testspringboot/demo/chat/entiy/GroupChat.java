@@ -16,8 +16,17 @@ public class GroupChat {
     private String bossUserId;//群主id
     private String groupChatName;//群聊名称
     private int createUserId;//创建人id
+    private List<GroupChatUser> groupChatUserList;
 
     public GroupChat() {
+    }
+
+    public List<GroupChatUser> getGroupChatUserList() {
+        return groupChatUserList;
+    }
+
+    public void setGroupChatUserList(List<GroupChatUser> groupChatUserList) {
+        this.groupChatUserList = groupChatUserList;
     }
 
     public byte[] getGroupChatUserIdListForByte() {

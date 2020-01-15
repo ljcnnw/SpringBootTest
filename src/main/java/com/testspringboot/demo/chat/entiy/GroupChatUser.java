@@ -7,13 +7,23 @@ import java.util.Date;
  */
 public class GroupChatUser {
     private int id;
+    private int groupChatId;
     private int userId;
     private String nickName;
     private Date joinDate;
     private boolean isBoss;
-    private String avatarImg;//头像
+    //头像
+    private String avatarImg;
 
     public GroupChatUser() {
+    }
+
+    public int getGroupChatId() {
+        return groupChatId;
+    }
+
+    public void setGroupChatId(int groupChatId) {
+        this.groupChatId = groupChatId;
     }
 
     public int getId() {
