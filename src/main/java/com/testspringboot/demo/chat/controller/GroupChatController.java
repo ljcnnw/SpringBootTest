@@ -51,6 +51,11 @@ public class GroupChatController {
         }
     }
 
+    /**
+     * 加入群聊
+     * @param groupChatUser
+     * @return
+     */
     @PostMapping("joinGroupChat")
     public ResultData joinGroupChat(@RequestBody GroupChatUser groupChatUser) {
         try {
