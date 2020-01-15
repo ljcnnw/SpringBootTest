@@ -32,7 +32,7 @@ public interface GroupChatDao {
     List<GroupChatUser> getGroupChatUserListByGroupChatId(@Param("groupChatId") int groupChatId);
 
 
-    //@Options(useGeneratedKeys = true, keyProperty = "groupChat.id", keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "groupChatUser.id", keyColumn = "id")
     @Insert("insert into group_chat_user(group_chat_id,user_id,nick_name,is_boss,avatar_img) values (#{groupChatUser.groupChatId},#{groupChatUser.userId},#{groupChatUser.nickName},#{groupChatUser.isBoss},#{groupChatUser.avatarImg})")
     int joinGrouChat(@Param("groupChatUser") GroupChatUser groupChatUser);
 
