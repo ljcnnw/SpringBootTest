@@ -3,6 +3,7 @@ package com.testspringboot.demo.chat.service;
 import com.testspringboot.demo.User.Mapper.UserDao;
 import com.testspringboot.demo.chat.entiy.GroupChat;
 import com.testspringboot.demo.chat.Mapper.GroupChatDao;
+import com.testspringboot.demo.chat.entiy.GroupChatMessage;
 import com.testspringboot.demo.chat.entiy.GroupChatUser;
 import com.testspringboot.demo.util.SerializeUtil;
 import org.apache.ibatis.session.SqlSession;
@@ -44,5 +45,13 @@ public class GroupChatService {
 
     public void joinGroupChat(GroupChatUser groupChatUser){
         groupChatDao.joinGrouChat(groupChatUser);
+    }
+
+    public List<GroupChat> getUserGroupChatListByUserId(int userId){
+        return groupChatDao.getUserGroupChatListByUserId(userId);
+    }
+
+    public void sendMessageForGroupChat(GroupChatMessage groupChatMessage){
+        simpMessagingTemplate.convertAndSend("/groupChat/send/"+groupChatMessage.getReceiveGroupId(),new GroupChatMessage(groupChatMessage.getSendUserId(),groupChatMessage.getReceiveGroupId(),groupChatMessage.getContent()));
     }
 }

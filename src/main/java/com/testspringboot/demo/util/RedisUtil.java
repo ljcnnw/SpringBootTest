@@ -20,6 +20,7 @@ public class RedisUtil {
     public static String CheckMail = "CHECK_MAIL:";//邮箱认证
     public static String FriendsList = "FRIENDS_LIST:";//用户好友
     public static String PRIVATE_CHAT_RECORDING = "PRIVATE_CHAT_RECORDING:";//私人聊天记录
+    public static String REQUEST_TOKEN = "REQUEST_TOKEN:";//验证幂等token
 
     private static RedisUtil redisUtil;
 
@@ -100,6 +101,15 @@ public class RedisUtil {
                 redisTemplate.delete(CollectionUtils.arrayToList(key));
             }
         }
+    }
+
+    /**
+     * 带返回值删除
+     * @param key
+     * @return
+     */
+    public boolean delHasReturn(String key){
+        return redisTemplate.delete(key);
     }
     // ============================String=============================
 

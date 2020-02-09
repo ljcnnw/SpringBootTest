@@ -3,8 +3,8 @@ package com.testspringboot.demo.chat.entiy;
 import java.util.Date;
 
 public class GroupChatMessage {
-    private int SendUserId;
-    private int ReceiveGroupId;
+    private int sendUserId;
+    private int receiveGroupId;
     public String content;
     private Date date = new Date();
 
@@ -12,25 +12,25 @@ public class GroupChatMessage {
     }
 
     public GroupChatMessage(int sendUserId, int receiveGroupId, String content) {
-        SendUserId = sendUserId;
-        ReceiveGroupId = receiveGroupId;
+        this.sendUserId = sendUserId;
+        this.receiveGroupId = receiveGroupId;
         this.content = content;
     }
 
     public int getSendUserId() {
-        return SendUserId;
+        return sendUserId;
     }
 
     public void setSendUserId(int sendUserId) {
-        SendUserId = sendUserId;
+        this.sendUserId = sendUserId;
     }
 
     public int getReceiveGroupId() {
-        return ReceiveGroupId;
+        return receiveGroupId;
     }
 
     public void setReceiveGroupId(int receiveGroupId) {
-        ReceiveGroupId = receiveGroupId;
+        this.receiveGroupId = receiveGroupId;
     }
 
     public String getContent() {

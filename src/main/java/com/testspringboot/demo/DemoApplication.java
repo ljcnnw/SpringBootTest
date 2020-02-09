@@ -8,7 +8,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.testspringboot", "com.testspringboot.demo.exceptionHandler"})
 @MapperScan("com.testspringboot.demo.*.Mapper")
 public class DemoApplication extends SpringBootServletInitializer {
 

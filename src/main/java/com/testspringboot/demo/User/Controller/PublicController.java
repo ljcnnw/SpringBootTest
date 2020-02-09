@@ -3,8 +3,11 @@ package com.testspringboot.demo.User.Controller;
 import com.alibaba.druid.util.StringUtils;
 import com.testspringboot.demo.User.Entity.User;
 import com.testspringboot.demo.User.Entity.UserInfo;
+import com.testspringboot.demo.User.Service.RequestTokenService;
 import com.testspringboot.demo.User.Service.UserService;
+import com.testspringboot.demo.comment.ApiIdempotent;
 import com.testspringboot.demo.config.ResultData;
+import com.testspringboot.demo.exception.IdempotentException;
 import com.testspringboot.demo.util.FtpUtil;
 import com.testspringboot.demo.util.RedisUtil;
 import com.testspringboot.demo.util.SendMailUtil;
@@ -32,6 +35,8 @@ public class PublicController {
     private UserService userService;
     @Autowired
     FtpUtil ftpUtil;
+    @Autowired
+    private RequestTokenService requestTokenService;
 
 
     @ApiOperation(value = "登录", notes = "登录接口")
@@ -45,7 +50,7 @@ public class PublicController {
             System.out.println(subject.getPrincipal());
             info.put("msg", "success");
             info.put("sessionId", subject.getSession().getId());
-            info.put("user",subject.getPrincipal());
+            info.put("user", subject.getPrincipal());
             return info;
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,13 +109,41 @@ public class PublicController {
     }
 
     @PostMapping("ftptest")
-    public void ftptest(@Param("fileName") String fileName,@Param("originfilename") String originfilename) {
-        boolean flag = ftpUtil.uploadFile("/data/",fileName,originfilename);
+    public void ftptest(@Param("fileName") String fileName, @Param("originfilename") String originfilename) {
+        boolean flag = ftpUtil.uploadFile("/data/", fileName, originfilename);
         if (flag) {
             System.out.println("失败");
         } else {
             System.out.println("成功");
         }
+    }
+
+    @GetMapping("addToken")
+    public ResultData addToken() {
+        try {
+            String token = requestTokenService.createRequestToken();
+            return new ResultData(200, token);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultData(500, "fail");
+        }
+    }
+
+    @GetMapping("testToken")
+    @ApiIdempotent
+    public ResultData testToken() {
+        try {
+            return new ResultData(200, "success");
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("多次请求错误");
+            return new ResultData(500, "fail");
+        }
+    }
+
+    @GetMapping("testHandler")
+    public ResultData testHandler(){
+        throw new IdempotentException("111");
     }
 
 }

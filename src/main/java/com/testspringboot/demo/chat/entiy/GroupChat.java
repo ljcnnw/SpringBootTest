@@ -1,5 +1,9 @@
 package com.testspringboot.demo.chat.entiy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.models.auth.In;
 
 import java.util.Date;
@@ -8,14 +12,20 @@ import java.util.List;
 /**
  * 群聊
  */
+@JsonPropertyOrder(alphabetic = true)
 public class GroupChat {
     private int id;
+    @JsonIgnore
     private List<Integer> groupChatUserIdList;//群聊成员ID
+    @JsonIgnore
     private byte[] groupChatUserIdListForByte;
     private Date createDate;//创建时间
+    @JsonIgnore
     private String bossUserId;//群主id
     private String groupChatName;//群聊名称
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private int createUserId;//创建人id
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private List<GroupChatUser> groupChatUserList;
 
     public GroupChat() {

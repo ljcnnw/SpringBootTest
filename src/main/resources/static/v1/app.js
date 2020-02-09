@@ -24,6 +24,7 @@ function connect() {
         	showContent(JSON.parse(result.body));
         });
     });
+
 }
 
 function disconnect() {

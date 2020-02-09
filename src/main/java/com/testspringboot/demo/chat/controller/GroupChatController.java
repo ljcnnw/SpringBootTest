@@ -1,12 +1,16 @@
 package com.testspringboot.demo.chat.controller;
 
 import com.testspringboot.demo.chat.entiy.GroupChat;
+import com.testspringboot.demo.chat.entiy.GroupChatMessage;
 import com.testspringboot.demo.chat.entiy.GroupChatUser;
 import com.testspringboot.demo.chat.service.GroupChatService;
 import com.testspringboot.demo.config.ResultData;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("groupChat")
@@ -64,6 +68,23 @@ public class GroupChatController {
         }catch (Exception e){
             e.printStackTrace();
             return new ResultData(500,"加入失败");
+        }
+    }
+
+    @MessageMapping("/groupChat/send")
+    public ResultData sendMessageForGroupChat(GroupChatMessage groupChatMessage){
+        groupChatService.sendMessageForGroupChat(groupChatMessage);
+        return new ResultData(200,"suceess");
+    }
+
+    @GetMapping("getUserGroupChatListByUserId")
+    public ResultData getUserGroupChatListByUserId(int userId){
+        try {
+            List<GroupChat> groupChats = groupChatService.getUserGroupChatListByUserId(userId);
+            return new ResultData(200,groupChats);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResultData(500,"获取群聊列表失败");
         }
     }
 }
